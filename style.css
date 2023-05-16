@@ -5,7 +5,12 @@
     flex-wrap: wrap;
 }
 
-#card,
+#cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 #game-info {
     display: flex;
     flex-direction: column;

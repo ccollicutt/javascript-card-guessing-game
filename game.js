@@ -10,6 +10,8 @@ let startButton = document.getElementById('start-button');
 let guessButton = document.getElementById('guess-button');
 let continueButton = document.getElementById('continue-button');
 let stopButton = document.getElementById('stop-button');
+let resetButton = document.getElementById('reset-button');
+
 
 // Game variables
 let suits = ['hearts', 'diamonds', 'clubs', 'spades'];
@@ -78,6 +80,7 @@ function makeGuess() {
     } else {
         resultMessage.textContent = 'Incorrect. The card was ' + guessCard.suit + ' ' + guessCard.rank;
     }
+    guessCardImg.src = 'card-images/fronts/' + guessCard.suit + '_' + guessCard.rank + '.svg';
 
     let newGuess = document.createElement('li');
     newGuess.textContent = `Guess: ${currentCard.suit} ${currentCard.rank} - ${resultMessage.textContent}`;
@@ -94,6 +97,7 @@ function continueGame() {
     continueButton.disabled = true;
     stopButton.disabled = false;
     guessButton.disabled = false;
+    guessCardImg.src = 'card-images/backs/red2.svg';
     if (deck.length > 0) {
         intervalId = setInterval(changeCurrentCard, 200);
     } else {
@@ -106,6 +110,26 @@ function stopGame() {
     clearInterval(intervalId);
     stopButton.disabled = true;
     guessButton.disabled = false;
+    resetButton.disabled = false;
+}
+
+// reset the game
+function resetGame() {
+    clearInterval(intervalId);
+    startButton.disabled = false;
+    stopButton.disabled = true;
+    guessButton.disabled = true;
+    continueButton.disabled = true;
+    score = 0;
+    scoreElement.textContent = 'Score: ' + score;
+    remainingElement.textContent = 'Cards remaining: ' + deck.length;
+    resultMessage.textContent = '';
+    guessesList.innerHTML = '';
+    deck = createDeck(suits, ranks);
+    guessCard = drawCard(deck);
+    guessCardImg.src = 'card-images/backs/red2.svg';
+    currentCardImg.src = 'card-images/backs/red2.svg';
+    updateGameState();
 }
 
 // Event listeners for buttons
