@@ -5,29 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card Guessing Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="game-area">
-        <div id="cards">
-            <div id="guess-card">
-                <h2>Guess a Card</h2>
-                <img id="guess-card-img" src="card-images/backs/red2.svg">
-            </div>
-            <div id="current-card">
-                <h2>Current Card</h2>
-                <img id="current-card-img" src="card-images/backs/red2.svg">
-                <p id="result-message"></p>
-            </div>
+    <div class="parent">
+        <div id="guess-card">
+            <h2>Guess a Card</h2>
+            <img id="guess-card-img" src="card-images/backs/red2.svg">
+        </div>
+        <div id="current-card">
+            <h2>Current Card</h2>
+            <img id="current-card-img" src="card-images/backs/red2.svg">
+            <p id="result-message"></p>
         </div>
         <div id="game-info">
-            <h2>Game Controls</h2>
-            <button id="start-button">Start Game</button>
-            <button id="guess-button" disabled>Guess</button>
-            <button id="continue-button" disabled>Continue</button>
-            <button id="stop-button" disabled>Stop</button>
-            <button id="reset-button" disabled>Reset Game</button>
             <h2>Game Stats</h2>
             <p id="score">Score: 0</p>
             <p id="remaining-cards">Remaining Cards: 52</p>
@@ -35,6 +27,14 @@
                 <h2>Previous Guesses</h2>
                 <ul id="guesses-list"></ul>
             </div>
+        </div>
+        <div id="game-controls">
+            <h2>Game Controls</h2>
+            <button id="start-button">Start Game</button>
+            <button id="guess-button" disabled>Guess</button>
+            <button id="continue-button" disabled>Continue</button>
+            <button id="stop-button" disabled>Stop</button>
+            <button id="reset-button" disabled>Reset Game</button>
         </div>
     </div>
     <script src="game.js"></script>
