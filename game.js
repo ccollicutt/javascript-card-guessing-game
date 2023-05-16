@@ -78,12 +78,12 @@ function makeGuess() {
         score += 100;
         resultMessage.textContent = 'Correct!';
     } else {
-        resultMessage.textContent = 'Incorrect. The card was ' + guessCard.suit + ' ' + guessCard.rank;
+        resultMessage.textContent = 'Incorrect. The card was the ' + guessCard.rank + ' of ' + guessCard.suit + '.';
     }
     guessCardImg.src = 'card-images/fronts/' + guessCard.suit + '_' + guessCard.rank + '.svg';
 
     let newGuess = document.createElement('li');
-    newGuess.textContent = `Guess: ${currentCard.suit} ${currentCard.rank} - ${resultMessage.textContent}`;
+    newGuess.textContent = `Guess: ${currentCard.rank} of ${currentCard.suit} - ${resultMessage.textContent}`;
     guessesList.appendChild(newGuess);
 
     deck = deck.filter(card => card !== currentCard);

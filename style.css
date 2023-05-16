@@ -1,8 +1,8 @@
 .parent {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 0px;
+    grid-template-columns: 300px 300px;
+    grid-template-rows: 400px 400px;
+    grid-column-gap: 10px;
     grid-row-gap: 0px;
     height: 100vh;
     /* setting the grid height to cover the entire viewport height */
@@ -35,7 +35,7 @@
 }
 
 #previous-guesses {
-    border-top: 1px solid #000;
+    /* border-top: 1px solid #000; */
     padding-top: 10px;
     margin-top: 10px;
 }
