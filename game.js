@@ -114,26 +114,41 @@ function stopGame() {
 }
 
 // reset the game
+// reset the game
 function resetGame() {
-    clearInterval(intervalId);
-    startButton.disabled = false;
-    stopButton.disabled = true;
-    guessButton.disabled = true;
-    continueButton.disabled = true;
-    score = 0;
-    scoreElement.textContent = 'Score: ' + score;
-    remainingElement.textContent = 'Cards remaining: ' + deck.length;
-    resultMessage.textContent = '';
-    guessesList.innerHTML = '';
-    deck = createDeck(suits, ranks);
-    guessCard = drawCard(deck);
-    guessCardImg.src = 'card-images/backs/red2.svg';
-    currentCardImg.src = 'card-images/backs/red2.svg';
-    updateGameState();
+    location.reload();
 }
+
+
+window.addEventListener('keydown', function (e) {
+    switch (e.key) {
+        case 's':
+            // Start game
+            startGame();
+            break;
+        case 'g':
+            // Make a guess
+            makeGuess();
+            break;
+        case 'c':
+            // Continue game
+            continueGame();
+            break;
+        case 't':
+            // Stop game
+            stopGame();
+            break;
+        case 'r':
+            // Reset game
+            resetGame();
+            break;
+    }
+});
+
 
 // Event listeners for buttons
 startButton.addEventListener('click', startGame);
 guessButton.addEventListener('click', makeGuess);
 continueButton.addEventListener('click', continueGame);
 stopButton.addEventListener('click', stopGame);
+resetButton.addEventListener('click', resetGame);
