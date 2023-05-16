@@ -75,16 +75,17 @@ function makeGuess() {
     guessButton.disabled = true;
     continueButton.disabled = false;
     if (guessCard.suit === currentCard.suit && guessCard.rank === currentCard.rank) {
-        score += 100;
+        score += 2 * deck.length;
         resultMessage.textContent = 'Correct!';
     } else {
         resultMessage.textContent = 'Incorrect. The card was the ' + guessCard.rank + ' of ' + guessCard.suit + '.';
+        score -= 2;
     }
     guessCardImg.src = 'card-images/fronts/' + guessCard.suit + '_' + guessCard.rank + '.svg';
 
     let newGuess = document.createElement('li');
     newGuess.textContent = `Guess: ${currentCard.rank} of ${currentCard.suit} - ${resultMessage.textContent}`;
-    guessesList.appendChild(newGuess);
+    guessesList.prepend(newGuess);
 
     deck = deck.filter(card => card !== currentCard);
     guessCard = drawCard(deck);
@@ -114,12 +115,11 @@ function stopGame() {
 }
 
 // reset the game
-// reset the game
 function resetGame() {
     location.reload();
 }
 
-
+// keyboard shortcuts
 window.addEventListener('keydown', function (e) {
     switch (e.key) {
         case 's':
