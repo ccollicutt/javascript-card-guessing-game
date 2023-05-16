@@ -1,0 +1,40 @@
+#game-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#card,
+#game-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+#guess-card,
+#current-card {
+    margin: 20px;
+}
+
+#guess-card-img,
+#current-card-img {
+    width: 200px;
+    height: 300px;
+}
+
+#guess-button {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+#game-info {
+    width: 50%;
+}
+
+#previous-guesses {
+    border-top: 1px solid #000;
+    padding-top: 10px;
+    margin-top: 10px;
+}
