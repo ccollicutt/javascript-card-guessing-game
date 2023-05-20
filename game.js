@@ -11,7 +11,7 @@ let guessButton = document.getElementById('guess-button');
 let continueButton = document.getElementById('continue-button');
 let stopButton = document.getElementById('stop-button');
 let resetButton = document.getElementById('reset-button');
-
+let versionElement = document.getElementById('version-info');
 
 // Game variables
 let suits = ['hearts', 'diamonds', 'clubs', 'spades'];
@@ -21,6 +21,10 @@ let guessCard = drawCard(deck);
 let currentCard;
 let score = 0;
 let intervalId;
+let isGameRunning = false;
+let version = "0.0.1";
+
+versionElement.textContent = 'Version: ' + version;
 
 // Create a deck of cards
 function createDeck(suits, ranks) {
@@ -37,7 +41,6 @@ function createDeck(suits, ranks) {
 function drawCard(deck) {
     let index = Math.floor(Math.random() * deck.length);
     let card = deck[index];
-    //deck.splice(index, 1);
     return card;
 }
 
@@ -49,10 +52,9 @@ function changeCurrentCard() {
     } else {
         clearInterval(intervalId);
         resultMessage.textContent = 'Game over';
+        isGameRunning = false;
     }
 }
-
-
 
 // Update the game state
 function updateGameState() {
@@ -62,6 +64,9 @@ function updateGameState() {
 
 // Start the game
 function startGame() {
+    if (isGameRunning) return;
+    
+    isGameRunning = true;
     startButton.disabled = true;
     stopButton.disabled = false;
     guessButton.disabled = false;
@@ -69,8 +74,11 @@ function startGame() {
     intervalId = setInterval(changeCurrentCard, 200);
 }
 
+
 // Make a guess
 function makeGuess() {
+    if (!isGameRunning) return;
+    
     clearInterval(intervalId);
     guessButton.disabled = true;
     continueButton.disabled = false;
@@ -92,7 +100,6 @@ function makeGuess() {
     updateGameState();
 }
 
-
 // Continue the game
 function continueGame() {
     continueButton.disabled = true;
@@ -112,6 +119,7 @@ function stopGame() {
     stopButton.disabled = true;
     guessButton.disabled = false;
     resetButton.disabled = false;
+    isGameRunning = false;
 }
 
 // reset the game
@@ -144,7 +152,6 @@ window.addEventListener('keydown', function (e) {
             break;
     }
 });
-
 
 // Event listeners for buttons
 startButton.addEventListener('click', startGame);
