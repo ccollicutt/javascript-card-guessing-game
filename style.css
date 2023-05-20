@@ -39,3 +39,15 @@
     padding-top: 10px;
     margin-top: 10px;
 }
+
+.correct {
+    color: green;
+}
+
+.partial-correct {
+    color: orange;
+}
+
+.incorrect {
+    color: red;
+}

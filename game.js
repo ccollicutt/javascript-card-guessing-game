@@ -88,23 +88,36 @@ function makeGuess() {
     clearInterval(intervalId);
     guessButton.disabled = true;
     continueButton.disabled = false;
-    if (guessCard.suit === currentCard.suit && guessCard.rank === currentCard.rank) {
-        score += 2 * deck.length;
-        resultMessage.textContent = 'Correct!';
+    resultMessage.className = ''; // Reset class
+    let correctRank = guessCard.rank === currentCard.rank;
+    let correctSuit = guessCard.suit === currentCard.suit;
+
+    if (correctRank && correctSuit) {
+        score += 100;
+        resultMessage.textContent = 'Correct! You got both the rank and suit!';
+        resultMessage.classList.add('correct'); // Add class
+    } else if (correctSuit) {
+        score += 10;
+        resultMessage.textContent = 'Good job! You got the suit!';
+        resultMessage.classList.add('partial-correct'); // Add class
+    } else if (correctRank) {
+        score += 20;
+        resultMessage.textContent = 'Nice! You got the rank!';
+        resultMessage.classList.add('partial-correct'); // Add class
     } else {
         resultMessage.textContent = 'Incorrect. The card was the ' + guessCard.rank + ' of ' + guessCard.suit + '.';
-        score -= 2;
+        score -= 5;
+        resultMessage.classList.add('incorrect'); // Add class
     }
     guessCardImg.src = 'card-images/fronts/' + guessCard.suit + '_' + guessCard.rank + '.svg';
-
     let newGuess = document.createElement('li');
     newGuess.textContent = `Guess: ${currentCard.rank} of ${currentCard.suit} - ${resultMessage.textContent}`;
     guessesList.prepend(newGuess);
-
     deck = deck.filter(card => card !== currentCard);
     guessCard = drawCard(deck);
     updateGameState();
 }
+
 
 // Continue the game
 function continueGame() {
