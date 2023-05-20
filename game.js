@@ -123,8 +123,10 @@ function continueGame() {
 function stopGame() {
     clearInterval(intervalId);
     stopButton.disabled = true;
-    guessButton.disabled = false;
     resetButton.disabled = false;
+    guessButton.disabled = true;
+    continueButton.disabled = true;
+    resultMessage.textContent = 'Game stopped';
     isGameRunning = false;
 }
 
@@ -135,29 +137,40 @@ function resetGame() {
 
 // keyboard shortcuts
 window.addEventListener('keydown', function (e) {
-    switch (e.key) {
-        case 's':
+    if (isGameRunning) {
+        switch (e.key) {
+            case 'g':
+                // Make a guess
+                if (!guessButton.disabled) {
+                    makeGuess();
+                }
+                break;
+            case 'c':
+                // Continue game
+                if (!continueButton.disabled) {
+                    continueGame();
+                }
+                break;
+            case 't':
+                // Stop game
+                if (!stopButton.disabled) {
+                    stopGame();
+                }
+                break;
+        }
+    } else {
+        if (e.key === 's') {
             // Start game
             startGame();
-            break;
-        case 'g':
-            // Make a guess
-            makeGuess();
-            break;
-        case 'c':
-            // Continue game
-            continueGame();
-            break;
-        case 't':
-            // Stop game
-            stopGame();
-            break;
-        case 'r':
+        } else if (e.key === 'r') {
             // Reset game
-            resetGame();
-            break;
+            if (!resetButton.disabled) {
+                resetGame();
+            }
+        }
     }
 });
+
 
 // Event listeners for buttons
 startButton.addEventListener('click', startGame);
