@@ -24,6 +24,12 @@ let intervalId;
 let isGameRunning = false;
 let version = "0.0.1";
 
+// set buttons
+guessButton.disabled = true;
+continueButton.disabled = true;
+stopButton.disabled = true;
+resetButton.disabled = true;
+
 versionElement.textContent = 'Version: ' + version;
 
 // Create a deck of cards
@@ -68,7 +74,7 @@ function startGame() {
     
     isGameRunning = true;
     startButton.disabled = true;
-    stopButton.disabled = false;
+    stopButton.disabled = true;
     guessButton.disabled = false;
     updateGameState();
     intervalId = setInterval(changeCurrentCard, 200);
